@@ -78,6 +78,7 @@ CREATE TABLE marca_vehiculo (
 CREATE TABLE vehiculo (
     placa VARCHAR(10) PRIMARY KEY,
     id_marca_vehiculo INT(10) NOT NULL,
+    kilometraje INT NOT NULL,
     FOREIGN KEY (id_marca_vehiculo) REFERENCES marca_vehiculo(id_marca_vehiculo)
 );
 
@@ -149,6 +150,7 @@ CREATE TABLE reparaciones (
     id_repuesto_pieza INT(10) NOT NULL,
     fecha_inicio DATE NOT NULL,
     fecha_finalizacion DATE NOT NULL,
+    duracion TIME,
     FOREIGN KEY (id_vehiculo) REFERENCES vehiculo(placa),
     FOREIGN KEY (id_repuesto_pieza) REFERENCES repuestos_piezas(id_repuesto_pieza)
 );

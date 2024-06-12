@@ -8,13 +8,13 @@ VALUES
 (4, 'Recepcionista'),
 (5, 'Jefe de Taller');
 
-INSERT INTO empleados (id_empleado, nombre1, apellido1, telefono, email, direccion)
+INSERT INTO empleados (id_empleado, nombre1, nombre2, apellido1, apellido2, email, id_cargo)
 VALUES 
-(1, 'Pedro', 'López', '111222333', 'pedro.lopez@example.com', 'Av. Obrera 321'),
-(2, 'Mónica', 'González', '444555666', 'monica.gonzalez@example.com', 'Calle Obrera 654'),
-(3, 'José', 'Ramírez', '777888999', 'jose.ramirez@example.com', 'Av. Obrera 987'),
-(4, 'Lucía', 'Morales', '222333444', 'lucia.morales@example.com', 'Calle Obrera 321'),
-(5, 'Roberto', 'Méndez', '555666777', 'roberto.mendez@example.com', 'Av. Obrera 654');
+(1, 'Pedro', NULL, 'López', NULL, 'pedro.lopez@example.com', 1),
+(2, 'Mónica', NULL, 'González', NULL, 'monica.gonzalez@example.com', 2),
+(3, 'José', NULL, 'Ramírez', NULL, 'jose.ramirez@example.com', 3),
+(4, 'Lucía', NULL, 'Morales', NULL, 'lucia.morales@example.com', 4),
+(5, 'Roberto', NULL, 'Méndez', NULL, 'roberto.mendez@example.com', 5);
 
 INSERT INTO area_taller (id_area_taller, area)
 VALUES 
@@ -55,7 +55,6 @@ VALUES
 (4, 'Sofía', 'Isabel', 'Ramírez', 'Hernández', 'sofia.ramirez@example.com', 'Calle 8 # 10-12', '32132132-4'),
 (5, 'Carlos', 'Eduardo', 'García', 'Sánchez', 'carlos.garcia@example.com', 'Av. Bolívar 333', '23123123-5');
 
-
 INSERT INTO marca_vehiculo (id_marca_vehiculo, marca)
 VALUES 
 (1, 'Toyota'),
@@ -64,13 +63,13 @@ VALUES
 (4, 'Chevrolet'),
 (5, 'Nissan');
 
-INSERT INTO vehiculo (placa, id_marca_vehiculo, modelo, kilometraje, color)
+INSERT INTO vehiculo (placa, id_marca_vehiculo, kilometraje)
 VALUES 
-('ABC123', 1, 'Corolla', 75000, 'Rojo'),
-('XYZ789', 2, 'Civic', 50000, 'Azul'),
-('JKL456', 3, 'F-150', 120000, 'Negro'),
-('MNO321', 4, 'Malibu', 60000, 'Blanco'),
-('PQR678', 5, 'Altima', 45000, 'Gris');
+('ABC123', 1, 75000),
+('XYZ789', 2, 50000),
+('JKL456', 3, 120000),
+('MNO321', 4, 60000),
+('PQR678', 5, 45000);
 
 INSERT INTO categoria_pieza (id_categoria_pieza, categoria)
 VALUES 
@@ -102,15 +101,16 @@ VALUES
 (2, 2, 3, 3, 200),
 (3, 3, 4, 4, 50),
 (4, 4, 5, 1, 300),
-(5, 5, 2, 2, 150);
+(5, 5, 2, 2, 150),
+(6, 2, 2, 1, 30);
 
-INSERT INTO servicios (id_servicio, servicio, costo)
+INSERT INTO servicios (id_servicio, id_area_taller, servicio, descripcion, costo)
 VALUES 
-(1, 'Cambio de Aceite', 50.00),
-(2, 'Alineación y Balanceo', 80.00),
-(3, 'Revisión de Frenos', 60.00),
-(4, 'Cambio de Neumáticos', 100.00),
-(5, 'Reparación de Motor', 500.00);
+(1, 1, 'Cambio de Aceite', NULL, 50.00),
+(2, 2, 'Alineación y Balanceo', NULL, 80.00),
+(3, 3, 'Revisión de Frenos', NULL, 60.00),
+(4, 4, 'Cambio de Neumáticos', NULL, 100.00),
+(5, 5, 'Reparación de Motor', NULL, 500.00);
 
 INSERT INTO citas (id_cita, fecha, id_cliente, id_vehiculo, id_servicio)
 VALUES 
@@ -118,15 +118,18 @@ VALUES
 (2, '2024-06-02', 2, 'XYZ789', 2),
 (3, '2024-06-03', 3, 'JKL456', 3),
 (4, '2024-06-04', 4, 'MNO321', 4),
-(5, '2024-06-05', 5, 'PQR678', 5);
+(5, '2024-06-05', 5, 'PQR678', 5),
+(6, '2022-06-11', 1, 'ABC123', 1),
+(7, '2023-06-12', 2, 'XYZ789', 2),
+(8, '2023-06-13', 3, 'JKL456', 3);
 
-INSERT INTO reparaciones (id_reparacion, id_vehiculo, id_repuesto_pieza, fecha_inicio, fecha_finalizacion)
+INSERT INTO reparaciones (id_reparacion, id_vehiculo, id_repuesto_pieza, fecha_inicio, fecha_finalizacion, duracion)
 VALUES 
-(1, 'ABC123', 1, '2024-06-01', '2024-06-01'),
-(2, 'XYZ789', 2, '2024-06-02', '2024-06-02'),
-(3, 'JKL456', 3, '2024-06-03', '2024-06-03'),
-(4, 'MNO321', 4, '2024-06-04', '2024-06-04'),
-(5, 'PQR678', 5, '2024-06-05', '2024-06-05');
+(1, 'ABC123', 1, '2024-06-01', '2024-06-01', '02:00:00'),
+(2, 'XYZ789', 2, '2024-06-02', '2024-06-02', '02:30:00'),
+(3, 'JKL456', 3, '2024-06-03', '2024-06-03', '01:45:00'),
+(4, 'MNO321', 4, '2024-06-04', '2024-06-04', '03:15:00'),
+(5, 'PQR678', 5, '2024-06-05', '2024-06-05', '04:00:00');
 
 
 INSERT INTO servicio_reparacion (id_servicio_reparacion, id_servicio, id_reparacion)
@@ -137,7 +140,7 @@ VALUES
 (4, 4, 4),
 (5, 5, 5);
 
-INSERT INTO historial_reparacion_emp (id_empleado, id_reparacion)
+INSERT INTO historial_reparacion_emp (id_reparacion, id_empleado)
 VALUES 
 (1, 1),
 (2, 2),
@@ -145,15 +148,13 @@ VALUES
 (4, 4),
 (5, 5);
 
-
-INSERT INTO proveedor (id_proveedor, nombre, apellido, empresa, telefono, email, direccion)
+INSERT INTO proveedor (id_proveedor, id_pieza, nombre, apellido, contacto, NIT)
 VALUES 
-(1, 'Mario', 'Gutiérrez', 'AutoPartes S.A.', '123456789', 'mario.gutierrez@autopartes.com', 'Calle Comercio 123'),
-(2, 'Laura', 'Fernández', 'RepAuto Ltda.', '987654321', 'laura.fernandez@repauto.com', 'Av. Industrial 456'),
-(3, 'Jorge', 'Salinas', 'Repuestos del Norte', '456789123', 'jorge.salinas@repdelnorte.com', 'Calle Norte 789'),
-(4, 'Marta', 'Pérez', 'Distribuidora Pérez', '321654987', 'marta.perez@distperez.com', 'Av. Central 10-20'),
-(5, 'Diego', 'Rodríguez', 'Partes y Piezas', '654123987', 'diego.rodriguez@pyp.com', 'Calle Sur 3-4');
-
+(1, 1, 'Mario', 'Gutiérrez', 'mario.gutierrez@autopartes.com', '12345678-9'),
+(2, 2, 'Laura', 'Fernández', 'laura.fernandez@repauto.com', '98765432-1'),
+(3, 3, 'Jorge', 'Salinas', 'jorge.salinas@repdelnorte.com', '45678912-3'),
+(4, 4, 'Marta', 'Pérez', 'marta.perez@distperez.com', '32165498-7'),
+(5, 5, 'Diego', 'Rodríguez', 'diego.rodriguez@pyp.com', '65412398-7');
 
 INSERT INTO ordenes_compra (id_orden_compra, id_proveedor, id_empleado, fecha, total)
 VALUES 
